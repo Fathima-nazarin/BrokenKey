@@ -294,6 +294,7 @@ function finishTest() {
   statusEl.textContent = 'TEST COMPLETE';
   renderPassage();
   updateHeatmap();
+  updateStats();
   const finalWPM = calculateWPM();
   if (finalWPM > bestWPM) {
     bestWPM = finalWPM;
