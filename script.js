@@ -159,10 +159,16 @@ function drawGraph() {
     if (idx === 0) chartCtx.moveTo(x, y);
     else chartCtx.lineTo(x, y);
   });
-  chartCtx.strokeStyle = '#d6ff35';
+  const choice = document.body.classList.contains('light-mode');
+  if (choice) {
+    chartCtx.strokeStyle = '#547600'; 
+    
+  } else {
+   chartCtx.strokeStyle = '#d6ff35';  
+  }
   chartCtx.lineWidth = 2.5;
   chartCtx.stroke();
-
+  
   // Data point markers
   wpmHistory.forEach((pt) => {
     const x = padLeft + (pt.time / timeLimit) * plotW;
