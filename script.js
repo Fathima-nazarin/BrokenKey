@@ -255,9 +255,15 @@ function calculateWPM() {
   return Math.round(totalTyped / 5 / elapsedMin);
 }
 
+function calculateAccuracy() {
+  if (totalTyped === 0) return 100;
+  const rawAccuracy = Math.round(((totalTyped - mistakes) / totalTyped) * 100);
+  return Math.max(0, Math.min(100, rawAccuracy));
+}
+
 function updateStats() {
   wpmEl.textContent = calculateWPM();
-  accuracyEl.textContent = '100%';
+  accuracyEl.textContent = `${calculateAccuracy()}%`;
   mistakesEl.textContent = mistakes;
   timeEl.innerHTML = `${timeLeft}<span class="unit">s</span>`;
 }
