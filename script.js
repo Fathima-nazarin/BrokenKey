@@ -284,11 +284,15 @@ function startTimer() {
   drawGraph();
   timer = setInterval(() => {
     timeLeft--;
+    if (timeLeft <= 0) {
+        timeLeft = 0;
+        clearInterval(timer);
+        setTimeout(finishTest, 120);
+    }
     timeEl.innerHTML = `${timeLeft}<span class="unit">s</span>`;
     wpmEl.textContent = calculateWPM();
     recordGraphSample();
-    if (timeLeft <= 0) setTimeout(finishTest, 120);
-  }, 1000);
+}, 1000);
 }
 
 function finishTest() {
