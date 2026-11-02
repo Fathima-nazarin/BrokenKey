@@ -231,25 +231,31 @@ inputEl.addEventListener('keydown', (event) => {
 
 inputEl.addEventListener('input', () => {
   const typed = inputEl.value;
-  if (typed.length > charIndex) {
-    while (charIndex < typed.length && charIndex < currentPassage.length) {
-      totalTyped++;
-      const typedChar = typed[charIndex];
-      const targetChar = currentPassage[charIndex];
-      if (typedChar === targetChar) {
-        correctTyped++;
-        charStates[charIndex] = 'correct';
-      } else {
-        mistakes++;
-        charStates[charIndex] = 'wrong';
-        updateHeatmap();
-      }
-      charIndex++;
+
+  totalTyped = 0;
+  correctTyped = 0;
+  mistakes = 0;
+  charIndex = 0;
+  charStates = [];
+
+  while (charIndex < typed.length && charIndex < currentPassage.length) {
+    totalTyped++;
+
+    const typedChar = typed[charIndex];
+    const targetChar = currentPassage[charIndex];
+
+    if (typedChar === targetChar) {
+      correctTyped++;
+      charStates[charIndex] = 'correct';
+    } else {
+      mistakes++;
+      charStates[charIndex] = 'wrong';
     }
-  } else if (typed.length < charIndex) {
-    charIndex = typed.length;
+
+    charIndex++;
   }
 
+  updateHeatmap();
   renderPassage();
   updateStats();
 
