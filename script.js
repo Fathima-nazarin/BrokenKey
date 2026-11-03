@@ -264,9 +264,9 @@ inputEl.addEventListener('input', () => {
 
 function calculateWPM() {
   if (!startTime) return 0;
-  const elapsedMin = (Date.now() - startTime) / 60000;
-  if (elapsedMin <= 0) return 0;
-  return Math.round(totalTyped / 5 / elapsedMin);
+  const elapsedMin=(Date.now()-startTime)/60000;
+  if (elapsedMin<=0) return 0;
+  return Math.round(correctTyped / 5 / elapsedMin);
 }
 
 function calculateAccuracy() {
