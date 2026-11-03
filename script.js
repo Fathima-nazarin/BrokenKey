@@ -315,6 +315,7 @@ function finishTest() {
   if (finalWPM > bestWPM) {
     bestWPM = finalWPM;
     localStorage.setItem('keyrush-best-wpm', bestWPM);
+    bestEl.textContent = bestWPM;
   }
   resultEl.classList.remove('hidden');
   resultEl.textContent = `Test complete · ${finalWPM} WPM · ${mistakes} errors`;
